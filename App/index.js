@@ -1,3 +1,3 @@
 import React from 'react';
-import Options from "./screens/Options";
-export default ()=><Options/>
+import Home from './screens/home';
+export default () => <Home />;

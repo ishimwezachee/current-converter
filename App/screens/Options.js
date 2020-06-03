@@ -17,9 +17,7 @@ export default () => {
 				<RowItem
 					text="Themes"
 					onPress={() =>
-						openUrl(
-							'httpsafffffffffffffffqef://learn.handlebarlabs.com/p/react-native-basics-build-a-currency-converter'
-						)}
+						openUrl('https://learn.handlebarlabs.com/p/react-native-basics-build-a-currency-converter')}
 					rightIcon={<Entypo name="chevron-right" size={20} color={colors.blue} />}
 				/>
 
