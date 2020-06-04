@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView, Keyboard } from 'react-native';
 import { format } from 'date-fns';
 import colors from '../constants/colors';
 import { ConversionInput } from '../components/ConversionInput';
@@ -46,9 +46,22 @@ export default () => {
 	const quoteCurrency = 'GBP';
 	const conversionRate = '0.8345';
 	const date = new Date();
+	const [ scrollEnabled, setScrollEnabled ] = useState(false);
+	useEffect(() => {
+		const showListener = Keyboard.addListener('keyboardDidShow', () => {
+			setScrollEnabled(true);
+		});
+		const hideListner = Keyboard.addListener('keyboardDidHide', () => {
+			setScrollEnabled(false);
+		});
+		return () => {
+			showListener.remove();
+			hideListner.remove();
+		};
+	}, []);
 	return (
 		<View style={styles.container}>
-			<ScrollView>
+			<ScrollView scrollEnabled={scrollEnabled}>
 				<StatusBar barStyle="light-content" backgroundColor={colors.blue} />
 				<View style={styles.content}>
 					<View style={styles.logoContainer}>
