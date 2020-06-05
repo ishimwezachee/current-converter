@@ -60,9 +60,7 @@ export default ({ navigation }) => {
 	const [ value, setValue ] = useState('100');
 	const conversionRate = 0.89824;
 	const date = new Date();
-	const { baseCurrency, quoteCurrency, swapCurrencies, setBaseCurrency, setQuoteCurrency } = useContext(
-		ConversionContext
-	);
+	const { baseCurrency, quoteCurrency, swapCurrencies } = useContext(ConversionContext);
 	const [ scrollEnabled, setScrollEnabled ] = useState(false);
 	return (
 		<View style={styles.container}>
@@ -91,8 +89,7 @@ export default ({ navigation }) => {
 							onButtonPress={() =>
 								navigation.push('CurrencyList', {
 									title: 'Base Currency',
-									activeCurrency: baseCurrency,
-									onChange: (currency) => setBaseCurrency(currency)
+									isBaseCurrency: true
 								})}
 							keyboardType="numeric"
 							onChangeText={(text) => setValue(text)}
@@ -104,8 +101,7 @@ export default ({ navigation }) => {
 							onButtonPress={() =>
 								navigation.push('CurrencyList', {
 									title: 'Quote Currency',
-									activeCurrency: quoteCurrency,
-									onChange: (currency) => setQuoteCurrency(currency)
+									isBaseCurrency: false
 								})}
 						/>
 					</View>
